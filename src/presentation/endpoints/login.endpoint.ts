@@ -4,6 +4,8 @@ import { Request, Response } from 'express';
 import { LoginRequest } from '../../application/features/security/login/models/login-request';
 import { LoginResponse } from '../../application/features/security/login/models/login-response';
 import { IHandler } from '../../application/interfaces/handler';
+import { validationResult } from 'express-validator';
+import { OperationResult } from "../../domain/results/operation-result";
 
 export class LoginEndpoint {
   private handler: IHandler<LoginRequest, LoginResponse>;
@@ -12,7 +14,20 @@ export class LoginEndpoint {
     this.handler = handler;
   }
 
-  async login(req: Request, res: Response) {
+  public async login(req: Request, res: Response) {
+
+    const errors = validationResult(req);
+    
+    if (!errors.isEmpty()) {
+
+     let result = {
+        success: false,
+        message: 'Validation errors',
+        errors: errors.array()
+      } as OperationResult<any>;
+
+      return res.status(400).json(result);
+    }
 
     const request = new LoginRequest(req.body.email, req.body.password);
     

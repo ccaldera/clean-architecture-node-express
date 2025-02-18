@@ -2,5 +2,5 @@ export interface OperationResult<T> {
   success: boolean;
   message?: string;
   data?: T;
-  error?: any;
+  errors?: any;
 }
