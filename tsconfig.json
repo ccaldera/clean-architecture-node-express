@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                       // ES6 as output target
+    "module": "commonjs",                   // Node.js style module
+    "outDir": "./dist",                     // Output the transpiled JS to "dist" directory
+    "rootDir": "./src",                     // Source code will be in "src" directory
+    "strict": true,                         // Enable strict type-checking options
+    "esModuleInterop": true,                // Enable compatibility for default imports
+    "skipLibCheck": true,                   // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true, // Ensure file names are case-consistent
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+  },
+  "include": ["src/**/*"],                   // Include all files from "src"
+  "exclude": ["node_modules"]                // Exclude node_modules
+}
